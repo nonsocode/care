@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
     {
         App\User::create([
         	'name' => "Chinonso Chukwuogor",
-        	'email' => 'nonso@prepclassng.com',
+        	'email' => 'nonso@care.com.ng',
         	'password' => bcrypt('access'),
         ]);
     }
