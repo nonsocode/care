@@ -1,4 +1,4 @@
-    <div class="sidebar" data-color="red" data-image="{{asset('img/sidebar-5.jpg')}}">
+    <div class="sidebar" data-color="" data-image="{{asset('img/sidebar-5.jpg')}}">
 
         <!--
 
@@ -9,60 +9,54 @@
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text">
-                    Creative Tim
+                <a href="{{route('admin')}}" class="simple-text">
+                    Care.com.ng
                 </a>
             </div>
 
             <ul class="nav">
                 <li class="active">
-                    <a href="dashboard.html">
+                    <a href="{{ route('dashboard') }}">
                         <i class="pe-7s-graph"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
+                @can('view driver requests')
                 <li>
-                    <a href="user.html">
-                        <i class="pe-7s-user"></i>
-                        <p>User Profile</p>
+                    <a href="{{ route('driver-requests') }}">
+                        <i class="pe-7s-news-paper"></i>
+                        <p>All Driver Requests</p>
                     </a>
                 </li>
+                @endcan
+                @can('manage drivers','manage clients')
                 <li>
                     <a href="table.html">
                         <i class="pe-7s-note2"></i>
-                        <p>Table List</p>
+                        <p>Drivers</p>
                     </a>
                 </li>
                 <li>
                     <a href="typography.html">
-                        <i class="pe-7s-news-paper"></i>
-                        <p>Typography</p>
+                        <i class="pe-7s-users"></i>
+                        <p>Clients</p>
                     </a>
                 </li>
+                @endcan
                 <li>
-                    <a href="icons.html">
-                        <i class="pe-7s-science"></i>
-                        <p>Icons</p>
+                    <a href="{{route('profile')}}">
+                        <i class="pe-7s-user"></i>
+                        <p>Profile</p>
                     </a>
                 </li>
-                <li>
-                    <a href="maps.html">
-                        <i class="pe-7s-map-marker"></i>
-                        <p>Maps</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="notifications.html">
-                        <i class="pe-7s-bell"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
-				<li class="active-pro">
-                    <a href="upgrade.html">
-                        <i class="pe-7s-rocket"></i>
-                        <p>Upgrade to PRO</p>
-                    </a>
-                </li>
+                @role('super admin')
+                    <li>
+                        <a href="icons.html">
+                            <i class="pe-7s-science"></i>
+                            <p>User Management</p>
+                        </a>
+                    </li>
+                @endrole
             </ul>
     	</div>
     </div>

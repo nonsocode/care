@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleSeeder extends Seeder
@@ -12,9 +13,12 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        Role::create(['name' => 'super admin']);
-        Role::create(['name' => 'admin']);
-        Role::create(['name' => 'driver']);
-        Role::create(['name' => 'client']);
+        $super = Role::create(['name' => 'super admin']);
+        $admin = Role::create(['name' => 'admin']);
+        $dirver = Role::create(['name' => 'driver']);
+        $client = Role::create(['name' => 'client']);
+
+        $super->syncPermissions(Permission::all());
+        $admin->syncPermissions(['manage driver requests','manage drivers','manage clients']);
     }
 }

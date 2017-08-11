@@ -4,3 +4,16 @@
     margin-right: auto;
     margin-left: auto;
 }
+.scroll-x{
+	overflow-x: auto;
+}
+@media (min-width: 993px) and (max-width: 1500px){
+	.container {
+	    width: auto;
+	}
+}
+@media (min-width: 1501px){
+	.container {
+	    width: 1200px;
+	}
+}

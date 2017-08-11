@@ -22,3 +22,21 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\DriverRequest::class, function(Faker\Generator $faker){
+	return [
+    		'name'				=> $faker->name,
+    		'email'				=> $faker->safeEmail,
+    		'phone'				=> $faker->phoneNumber,
+    		'address'			=> $faker->address,
+    		'lga_id'			=> rand(1,10),
+    		'job_description'	=> $faker->sentence,
+    		'driver_type_id'	=> rand(1,3),
+    		'working_hours'		=> $faker->sentence,
+    		'start_date'		=> $faker->sentence,
+    		'frequency'			=> $faker->sentence,
+    		'pay'				=> $faker->randomNumber,
+    		'call_time'			=> $faker->time,
+    		'notes'				=> $faker->text,
+	];
+});

@@ -18,8 +18,11 @@ Route::get('/get-driver', 'DriverController@index')->name('get-driver');
 Route::post('get-driver', 'DriverController@saveDriverRequest');
 
 Route::group(['prefix' => 'admin', 'middleware'=> ['auth']], function() {
-    Route::get('/', 'AdminController@index');
-    Route::get('/dashboard', 'AdminController@index');
+    Route::get('/', 'AdminController@index')->name('admin');
+    Route::get('/dashboard', 'AdminController@index')->name('dashboard');
+    Route::get('driver-requests', 'DriverRequestsController@index')->name('driver-requests');
+    Route::get('profile','ProfileController@index')->name('profile');
+    Route::post('profile','ProfileController@update')->name('profile');
 });
 Auth::routes();
 
