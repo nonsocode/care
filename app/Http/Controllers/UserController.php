@@ -14,11 +14,20 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $data['headTitle'] = "User Management";
-        $data['users'] = User::withTrashed()->with('roles')->paginate();
+        $data['users'] = $this->buildUserQuery($request)->paginate();
         return view('admin.users.index' , $data);
+    }
+
+    public function buildUserQuery(Request $request)
+    {
+        $query = User::query();
+        if ($request->has('blocked')) {
+            $query->whereBlocked((boolean) $request->blocked);
+        }
+        return $query;
     }
 
     /**

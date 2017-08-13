@@ -47,7 +47,7 @@
 								</tbody>
 							</table>
 							<div class="text-right">
-								{{$users->links()}}
+								{{$users->appends(['blocked'=> request()->blocked])->links()}}
 							</div>
 						</div>
 					</div>
