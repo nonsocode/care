@@ -505,7 +505,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   border-width: 2px;
   background-color: transparent;
   font-weight: 400;
-  opacity: 0.8;
+  /*opacity: 0.8;*/
   filter: alpha(opacity=80);
   padding: 8px 16px;
   border-color: #888888;
@@ -845,7 +845,7 @@ body > .navbar-collapse[data-color="purple"]:after {
 
 .form-control {
   background-color: #FFFFFF;
-  border: 1px solid #E3E3E3;
+  border: 2px solid #EEE;
   border-radius: 4px;
   color: #565656;
   padding: 8px 12px;
@@ -1900,7 +1900,7 @@ body > .navbar-collapse[data-color="purple"]:after {
 }
 .card label {
   font-size: 12px;
-  margin-bottom: 5px;
+  /*margin-bottom: 5px;*/
   text-transform: uppercase;
 }
 .card .title {

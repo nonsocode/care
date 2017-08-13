@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('bio')->nullable();
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('avatar')->nullable();
+            $table->boolean('blocked')->default(false);
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

@@ -17,3 +17,23 @@
 	    width: 1200px;
 	}
 }
+
+.label-md{
+	font-size: 1em;
+}
+
+.btn-warning-inverse{
+/*	color:white !important;
+	background: #FF9500 !important;
+	border-color: #FF9500 !important;
+*/}
+.card label.btn.btn-warning {
+	border-color: #FF9500;
+    background-color: #FF9500;
+    color: white;
+}
+.toggle-group .toggle-handle{
+	background: white;
+	border-left-color: #FF9500;
+	border-right-color:#bbb;
+}

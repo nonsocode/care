@@ -15,5 +15,6 @@ return [
 
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'locked' => 'Your Account has been locked. Please contact Support to rectify this.'
 
 ];

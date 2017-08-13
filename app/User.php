@@ -9,7 +9,9 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasRoles, SoftDeletes;
+    use Notifiable;
+    use HasRoles;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -28,4 +30,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getFullNameAttribute()
+    {
+        return ucfirst($this->first_name)." ".ucfirst($this->last_name);
+    }
+
+    public function isBlocked()
+    {
+        return $this->blocked;
+    }
 }

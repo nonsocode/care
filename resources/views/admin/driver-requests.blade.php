@@ -79,6 +79,7 @@
 		$(document).ready(function() {
 		    $('#driver-requests-table').DataTable({
 		    	"ajax": "{{route("driver-requests.index")}}",
+		    	'order': [[0,'desc']],
 		        "columns": [
 		            { "data": "id" },
 		            { "data": "name" },

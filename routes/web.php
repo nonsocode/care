@@ -23,6 +23,7 @@ Route::group(['prefix' => 'admin', 'middleware'=> ['auth']], function() {
     Route::get('driver-requests', 'DriverRequestsController@index')->name('driver-requests');
     Route::get('profile','ProfileController@index')->name('profile');
     Route::post('profile','ProfileController@update')->name('profile');
+	Route::resource('users','UserController');
 });
 Auth::routes();
 

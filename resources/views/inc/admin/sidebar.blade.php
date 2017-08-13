@@ -15,14 +15,14 @@
             </div>
 
             <ul class="nav">
-                <li class="active">
+                <li class="{{request()->is('admin','*admin/dashboard')? "active":""}}">
                     <a href="{{ route('dashboard') }}">
                         <i class="pe-7s-graph"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 @can('view driver requests')
-                <li>
+                <li class="{{request()->is('*admin/driver-requests')? "active":""}}">
                     <a href="{{ route('driver-requests') }}">
                         <i class="pe-7s-news-paper"></i>
                         <p>All Driver Requests</p>
@@ -30,28 +30,28 @@
                 </li>
                 @endcan
                 @can('manage drivers','manage clients')
-                <li>
-                    <a href="table.html">
+                <li class="{{request()->is('drivers')? "active":""}}">
+                    <a href="">
                         <i class="pe-7s-note2"></i>
                         <p>Drivers</p>
                     </a>
                 </li>
-                <li>
-                    <a href="typography.html">
+                <li class="{{request()->is('admin/clients')? "active":""}}">
+                    <a href="">
                         <i class="pe-7s-users"></i>
                         <p>Clients</p>
                     </a>
                 </li>
                 @endcan
-                <li>
+                <li class="{{request()->is('admin/profile')? "active":""}}">
                     <a href="{{route('profile')}}">
                         <i class="pe-7s-user"></i>
                         <p>Profile</p>
                     </a>
                 </li>
                 @role('super admin')
-                    <li>
-                        <a href="icons.html">
+                    <li class="{{request()->is('*users*')? "active":""}}">
+                        <a href="{{ route('users.index') }}">
                             <i class="pe-7s-science"></i>
                             <p>User Management</p>
                         </a>

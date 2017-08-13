@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -11,7 +12,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        App\User::create([
+        $me = User::create([
             'first_name' => "Chinonso",
             'last_name' => "Chukwuogor",
         	'username' => "nonso",
@@ -20,5 +21,7 @@ class UserSeeder extends Seeder
             'bio' => "Problems : 🚢, Me: ⛰",
         	'password' => bcrypt('access'),
         ]);
+        factory(User::class,30)->create();
+        $me->assignRole('super admin');
     }
 }
