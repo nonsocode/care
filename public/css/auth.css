@@ -134,6 +134,10 @@ body:before {
   background: #FF2E2E;
   color: white;
 }
+.alert.success{
+  background: #18CB6C;
+  color: white;
+}
 .alert .close{
   width: 25px;
   height: 25px;
