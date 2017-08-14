@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('avatar')->nullable();
             $table->boolean('blocked')->default(false);
+            $table->boolean('formalities')->default(false);
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

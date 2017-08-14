@@ -8,7 +8,7 @@
 					<div class="card">
 						<div class="header">
 							<h3>All Users
-								<span class="pull-right"><a class="btn btn-info"><i  class="fa fa-plus"></i> Create User</a></span>
+								<span class="pull-right"><a class="btn btn-info" href="{{ route('users.create') }}"><i  class="fa fa-plus"></i> Create User</a></span>
 							</h3>
 						</div>
 						<div class="content">

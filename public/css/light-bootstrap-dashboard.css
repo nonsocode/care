@@ -848,6 +848,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   border: 2px solid #EEE;
   border-radius: 4px;
   color: #565656;
+  transition: border 0.2s ease-in-out;
   padding: 8px 12px;
   height: 40px;
   -webkit-box-shadow: none;
@@ -855,7 +856,7 @@ body > .navbar-collapse[data-color="purple"]:after {
 }
 .form-control:focus {
   background-color: #FFFFFF;
-  border: 1px solid #AAAAAA;
+  border: 2px solid #49B0FF;
   -webkit-box-shadow: none;
   box-shadow: none;
   outline: 0 !important;

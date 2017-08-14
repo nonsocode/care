@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             'phone' => '07012903451',
             'bio' => "Problems : 🚢, Me: ⛰",
         	'password' => bcrypt('access'),
+            'formalities' => true
         ]);
         factory(User::class,30)->create();
         $me->assignRole('super admin');

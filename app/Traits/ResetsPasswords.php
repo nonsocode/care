@@ -2,10 +2,11 @@
 
 namespace App\Traits;
 
-use Illuminate\Support\Str;
+use App\Http\Requests\PasswordChange;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
 
 trait ResetsPasswords
 {
@@ -27,6 +28,16 @@ trait ResetsPasswords
         );
     }
 
+    public function getPasswordChangeForm()
+    {
+        return view('auth.passwords.change');
+    }
+
+    public function changePassword(PasswordChange $request)
+    {
+        Auth::user()->update(["password" => bcrypt($request->password), 'formalities' => true]);
+        return redirect()->route('admin');
+    }
     /**
      * Reset the given user's password.
      *

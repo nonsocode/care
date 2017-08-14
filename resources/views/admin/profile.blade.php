@@ -22,7 +22,34 @@
 						<p class="description text-center">
 							{!!$user->bio!!}
 						</p>
+						<hr>
+						<div class="col-md-12">
+							<h5>Change Password</h5>
+							<form action="{{ route('profile.password') }}" method="POST">
+								@if (session()->has('password_success'))
+									<div class="alert alert-success">
+										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+										<strong>Success</strong>{{session('passowrd_success','Password changed successfully')}}
+									</div>
+								@endif
+								{{csrf_field()}}
+								<div class="form-group {{$errors->has('password') ? "has-error" : ""}}">
+									<input type="password" name="password" class="form-control" id="password" placeholder="New Password">
+									@if($errors->has('password'))
+										<div class="help-block">{{$errors->first('password')}}</div>
+									@endif
+								</div>
+								<div class="form-group {{$errors->has('password') ? "has-error" : ""}}">
+									<input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Re-type Password">
+									@if ($errors->has('password_confirmation'))
+										<div class="help-block">{{$errors->first('password_confirmation')}}</div>
+									@endif
+								</div>
+								<div class="text-center"><button class="btn btn-success">Save</button></div>
+							</form>
+						</div>
 					</div>
+
 					<hr>
 					<div class="text-center">
 						<button href="#" class="btn btn-simple"><i class="fa fa-circle"></i></button>
