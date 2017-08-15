@@ -104,3 +104,6 @@ tr th {
 	font-weight: bold;
 	color: #999;
 }
+.clickable{
+	cursor : pointer;
+}

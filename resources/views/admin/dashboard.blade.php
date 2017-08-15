@@ -33,7 +33,7 @@
 								</thead>
 								<tbody>
 									@forelse ($driverRequests as $dr)
-										<tr>
+										<tr class="clickable link" data-url="{{route("driver-requests.show",[$dr->id])}}">
 											<td><div class="table-item">{{$dr->name}}</div></td>
 											<td><div class="table-item">{{$dr->email}}</div></td>
 											<td><div class="table-item">{{$dr->phone}}</div></td>
@@ -65,3 +65,13 @@
 </div>
 @endsection
 
+@section('script')
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".link").click(function(event) {
+				console.log('clicked')
+				window.location = $(this).data('url');
+			});
+		});
+	</script>
+@endsection

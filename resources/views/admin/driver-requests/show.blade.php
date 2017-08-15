@@ -113,7 +113,7 @@
 										<div class="message-content">
 											<div class="message-text">{{$message->text}}</div>
 											<div class="message-meta text-right">
-												<span class="message-status">{{$message->created_at->diffForHumans()}}</span> &#9679; 
+												<span class="message-status" title="{{$message->created_at}}" data-toggle="tooltip">{{$message->created_at->diffForHumans()}}</span> &#9679; 
 												<span class="message-sender">{{$message->sender->short_name}}</span>
 											</div>
 										</div>
@@ -159,15 +159,16 @@
 			$text = $('#text');
 			$emptyMessage = $('#emptyMessage');
 
-		function scrollMessageBottom(argument) {
-			$mc.scrollTop($(this).innerHeight());
+		function scrollMessageBottom(animate) {
+			console.log($mc[0].scrollHeight);
+			$mc.animate({scrollTop : $mc[0].scrollHeight }, animate ? 400:0);
 		}
 		function buildMessageDom(text) {
 			var message = $("<div class='message'>"),
 				messageContent = $("<div class='message-content'>"),
 				messageText= $("<div class='message-text'>").text(text),
 				messageMeta = $("<div class='message-meta text-right'>"),
-				messageStatus = $("<span class='message-status'>").text('Sending...'),
+				messageStatus = $("<span class='message-status'>").text('Sending...').attr({'data-toggle':'tooltip','title': 'Sending'}),
 				messageSender = $("<span class='message-sender'>").text('You'),
 				avatarHolder = $("<div class='message-sender-avatar'>")
 				img = $('<img alt="avatar" height="50" width="50" class="img img-circle img-thumbnail">').attr('src', '/img/faces/face-0.jpg');
@@ -179,6 +180,11 @@
 				
 				return {message, messageContent, messageText, messageMeta, messageStatus, messageSender, avatarHolder, img}
 		}
+
+		function initTooltips(){
+			$("[data-toggle='tooltip']").tooltip();
+		}
+
 		$text.keydown(function (e) {
 		  if (e.ctrlKey && e.keyCode == 13) {
 		    $("#send-message-button").click()
@@ -198,7 +204,8 @@
 					console.log(data);
 					$dom.messageText.text(data.text);
 					$dom.messageSender.text(data.sender.shortName);
-					$dom.messageStatus.text(moment(data.created_at).fromNow());
+					$dom.messageStatus.text(moment(data.created_at).fromNow()).attr('title', data.created_at);
+					initTooltips();
 				},
 				'json'
 			).fail(function () {
@@ -207,9 +214,11 @@
 				$dom.message.remove();
 			});
 			$text.val('');
-			scrollMessageBottom();
+			scrollMessageBottom(true);
 		});
+		
 		scrollMessageBottom();
+		initTooltips();
 	})
 </script>
 @endsection

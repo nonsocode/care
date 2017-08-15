@@ -30,14 +30,14 @@
                 </li>
                 @endcan
                 @can('manage drivers','manage clients')
-                <li class="{{request()->is('drivers')? "active":""}}">
-                    <a href="">
+                <li class="{{request()->is('drivers/*')? "active":""}}">
+                    <a href="{{ route('drivers.index') }}">
                         <i class="pe-7s-note2"></i>
                         <p>Drivers</p>
                     </a>
                 </li>
-                <li class="{{request()->is('admin/clients')? "active":""}}">
-                    <a href="">
+                <li class="{{request()->is('admin/clients/*')? "active":""}}">
+                    <a href="{{ route('clients.index') }}">
                         <i class="pe-7s-users"></i>
                         <p>Clients</p>
                     </a>

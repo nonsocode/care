@@ -24,14 +24,22 @@ Route::post('change-password', 'Auth\\ResetPasswordController@changePassword')->
 Route::group(['prefix' => 'admin', 'middleware'=> ['auth','formalities']], function() {
     Route::get('/', 'AdminController@index')->name('admin');
     Route::get('/dashboard', 'AdminController@index')->name('dashboard');
+
     Route::get('all-driver-requests.json',"api\\DriverRequestController@index")->name("driverRequest.json");
-    Route::resource('driver-requests', 'DriverRequestsController');
+    
     Route::get('profile','ProfileController@index')->name('profile');
     Route::post('profile','ProfileController@update')->name('profile');
     Route::post('profile/passowrd-change','ProfileController@changePassword')->name('profile.password');
-	Route::resource('users','UserController');
 
+    Route::resource('users','UserController');
+
+    Route::resource('driver-requests', 'DriverRequestsController');
 	Route::post('/driver-requests/{driver_request}/messages',"DriverRequestsController@storeMessage")->name('driver-requests.store.message');
+
+    Route::resource('drivers', 'DriversController');
+    
+    Route::resource('clients', 'ClientsController');
+
 });
 Auth::routes();
 
