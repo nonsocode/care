@@ -12,6 +12,8 @@ class DriverRequestSeeder extends Seeder
      */
     public function run()
     {
-        factory(DriverRequest::class,60)->create();
+    	if (appenv(['development','staging'])) {
+	        factory(DriverRequest::class,60)->create();
+    	}
     }
 }
