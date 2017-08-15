@@ -39,7 +39,7 @@ trait AuthenticatesUsers
 
             return $this->sendLockoutResponse($request);
         }
-        $user = User::where($this->username(), $request->{$this->username()})->firstOrFail();
+        $user = User::where($this->username(), $request->{$this->username()})->first();
         if ( $user && $user->blocked ) {
             return $this->sendLockedAccountResponse($request);
         }
