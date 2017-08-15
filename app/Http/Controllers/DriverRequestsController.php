@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\DriverRequest;
 use App\Http\Requests\SmsMessageRequest;
+use App\Repositories\Multitext;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -88,9 +90,13 @@ class DriverRequestsController extends Controller
 
     public function storeMessage(SmsMessageRequest $request, DriverRequest $driver_request)
     {
-    	//Send SMS here
-    	$sms = Auth::user()->sentSms()->create($request->only('text'));
-    	$driver_request->smsMessages()->attach($sms);
-    	return $sms->load('sender');
+        $sms = new Multitext($request->text);
+        $result = $sms->recepients($driver_request->phone)->send();
+        if ($result) {
+        	$sms = Auth::user()->sentSms()->create($request->only('text'));
+        	$driver_request->smsMessages()->attach($sms);
+        	return $sms->load('sender');
+        }
+        return dd($sms->httpError->getResponse(),$sms->httpError->getRequest());
     }
 }

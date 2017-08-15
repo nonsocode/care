@@ -98,7 +98,7 @@
                         <div class="form-group">
                             <label>Any additional notes? </label>
                             <p><small>you can give a little detail about the type of driver you want. Please kindly keep the specifications realistic</small></p>
-                            <textarea name="additionalnotes" class="form-control" rows="8"></textarea>
+                            <textarea name="notes" class="form-control" rows="8"></textarea>
                         </div>   
 
 

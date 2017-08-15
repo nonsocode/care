@@ -24,6 +24,16 @@ class DriverRequest extends Model
         return $this->morphToMany(SmsMessage::class,'messageable');
     }
 
+    public function emailMessages()
+    {
+        return $this->morphToMany(Email::class,'emailable');
+    }
+
+    public function receivedComments()
+    {
+        return $this->morphToMany(Comment::class,'commentable');
+    }    
+
     public function getLgaNameAttribute(){
     	return $this->lga->name;
     }

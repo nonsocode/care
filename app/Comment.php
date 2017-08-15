@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SmsMessage extends Model
+class Comment extends Model
 {
-	protected $fillable =['text'];
+	protected $fillable = ['text'];
     public function users()
     {
 	    return	$this->morphedByMany(User::class, 'messageable');
