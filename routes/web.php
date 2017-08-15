@@ -14,6 +14,8 @@
 Route::get('/', function () {
     return view('home');
 });
+
+// @Todo : Add Roles middleware to routes
 Route::get('/get-driver', 'DriverController@index')->name('get-driver');
 Route::post('get-driver', 'DriverController@saveDriverRequest');
 Route::get('change-password', 'Auth\\ResetPasswordController@getPasswordChangeForm')->name('change.password')->middleware('auth');
@@ -22,11 +24,14 @@ Route::post('change-password', 'Auth\\ResetPasswordController@changePassword')->
 Route::group(['prefix' => 'admin', 'middleware'=> ['auth','formalities']], function() {
     Route::get('/', 'AdminController@index')->name('admin');
     Route::get('/dashboard', 'AdminController@index')->name('dashboard');
-    Route::get('driver-requests', 'DriverRequestsController@index')->name('driver-requests');
+    Route::get('all-driver-requests.json',"api\\DriverRequestController@index")->name("driverRequest.json");
+    Route::resource('driver-requests', 'DriverRequestsController');
     Route::get('profile','ProfileController@index')->name('profile');
     Route::post('profile','ProfileController@update')->name('profile');
     Route::post('profile/passowrd-change','ProfileController@changePassword')->name('profile.password');
 	Route::resource('users','UserController');
+
+	Route::post('/driver-requests/{driver_request}/messages',"DriverRequestsController@storeMessage")->name('driver-requests.store.message');
 });
 Auth::routes();
 

@@ -7,6 +7,7 @@
         <title>{{$title or "Admin | ".config('app.name') }}</title>
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
+        <meta name="csrf" content="{{csrf_token()}}">
         <!-- Bootstrap core CSS     -->
         <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
         <!-- Animation library for notifications   -->
@@ -42,6 +43,12 @@
     <script src="{{asset('js/bootstrap-notify.js')}}"></script>
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
     <script src="{{asset('js/light-bootstrap-dashboard.js')}}"></script>
+    <script src="{{asset('js/laroute.js')}}"></script>
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {"X-CSRF-TOKEN": $('meta[name=csrf]').attr('content')}
+        })        
+    </script>
     @yield('script-links')
     @yield('script')
 </html>

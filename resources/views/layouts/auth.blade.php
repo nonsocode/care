@@ -24,5 +24,6 @@
         </div>
         <script src='{{ asset('js/jquery.js') }}'></script>
         <script src="{{asset('js/auth.js')}}"></script>
+        <script src="{{asset('js/laroute.js')}}"></script>
     </body>
 </html>

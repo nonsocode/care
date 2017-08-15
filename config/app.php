@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Africa/Lagos',
 
     /*
     |--------------------------------------------------------------------------
@@ -170,6 +170,7 @@ return [
         Propaganistas\LaravelPhone\PhoneServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        Lord\Laroute\LarouteServiceProvider::class,
 
         /*
          * Application Service Providers...

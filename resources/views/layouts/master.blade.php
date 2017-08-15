@@ -37,5 +37,7 @@
     <script src="{{asset("js/jquery.isotope.min.js")}}"></script>
     <script src="{{asset("js/main.js")}}"></script>
     <script src="{{asset("js/wow.min.js")}}"></script>
+    <script src="{{asset('js/laroute.js')}}"></script>
+    
 </body>
 </html>

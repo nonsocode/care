@@ -30,14 +30,30 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    protected $appends = ['shortName','fullName'];
 
     public function getFullNameAttribute()
     {
         return ucfirst($this->first_name)." ".ucfirst($this->last_name);
     }
 
+    public function getShortNameAttribute()
+    {
+        return  ucfirst($this->first_name)." ".ucfirst($this->last_name)[0].".";
+    }
+
     public function isBlocked()
     {
         return $this->blocked;
+    }
+
+    public function smsMessages()
+    {
+        return $this->morphToMany(SmsMessage::class,'messageable');
+    }
+
+    public function sentSms()
+    {
+        return $this->hasMany(SmsMessage::class, 'sender_id');
     }
 }

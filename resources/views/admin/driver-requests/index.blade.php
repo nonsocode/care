@@ -23,6 +23,7 @@
 									<th>pay</th>
 									<th>notes</th>
 									<th>created_at</th>
+									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody></tbody>
@@ -49,6 +50,7 @@
 
 @section('script-links')
 	<script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/3.2.2/js/dataTables.fixedColumns.min.js"></script>
 @endsection
 
 @section('script')
@@ -78,10 +80,17 @@
 		// });
 		$(document).ready(function() {
 		    $('#driver-requests-table').DataTable({
-		    	"ajax": "{{route("driver-requests.index")}}",
+		    	"ajax": "{{route("driverRequest.json")}}",
 		    	'order': [[0,'desc']],
+		    	scrollCollapse : true,
+		    	scrollY: "65vh",
+		        scrollX: "1200px",
+		    	fixedColumns:   {
+		            leftColumns: 1,
+		            rightColumns: 1
+		        },
 		        "columns": [
-		            { "data": "id" },
+		            { "data": "id"},
 		            { "data": "name" },
 		            { "data": "phone" },
 		            { "data": "address" },
@@ -93,8 +102,14 @@
 		            { "data": "start_date" },
 		            { "data": "frequency" },
 		            { "data": "pay" },
-		            { "data": "notes" },
-		            { "data": "created_at" }
+		            { "data": "notes", width: 400 },
+		            { "data": "created_at" },
+		            { 
+		            	"render" : function (data,type, row, meta) {
+		            		return "<a class='btn btn-info' href='"+laroute.route('driver-requests.show', {driver_request : row.id})+"'>View</a>";
+		            	},
+		            	width: 70
+		            }
 		        ]
 		    });
 		});

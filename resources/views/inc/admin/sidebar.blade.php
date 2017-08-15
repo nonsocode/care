@@ -23,7 +23,7 @@
                 </li>
                 @can('view driver requests')
                 <li class="{{request()->is('*admin/driver-requests')? "active":""}}">
-                    <a href="{{ route('driver-requests') }}">
+                    <a href="{{ route('driver-requests.index') }}">
                         <i class="pe-7s-news-paper"></i>
                         <p>All Driver Requests</p>
                     </a>

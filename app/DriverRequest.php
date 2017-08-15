@@ -19,6 +19,11 @@ class DriverRequest extends Model
     	return $this->belongsTo(DriverType::class);
     }
 
+    public function smsMessages()
+    {
+        return $this->morphToMany(SmsMessage::class,'messageable');
+    }
+
     public function getLgaNameAttribute(){
     	return $this->lga->name;
     }

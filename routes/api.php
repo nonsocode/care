@@ -14,5 +14,4 @@ use Illuminate\Http\Request;
 */
 
 Route::group([],function(){
-	Route::resource('/driver-requests', "api\DriverRequestController");
 });
