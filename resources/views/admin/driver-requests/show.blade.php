@@ -54,7 +54,7 @@
 							<div class="col-md-4">
 								<div class="dr">
 									<div class="small-title">Job Description</div>
-									<div class="dr-data">{{$dr->job_decription}}</div>
+									<div class="dr-data">{{$dr->job_description}}</div>
 								</div>
 							</div>
 							<div class="col-md-4">
@@ -120,7 +120,7 @@
 										<div class="message-sender-avatar"><img src="{{ asset('img/faces/face-0.jpg') }}" alt="avatar" height="50" width="50" class="img img-circle img-thumbnail"></div>
 									</div>
 								@empty
-									<h6 class="text-center" style="margin-top: 20px">Nothing to see yet</h6>
+									<h6 class="text-center" id="emptyMessage" style="margin-top: 20px">Nothing to see yet</h6>
 								@endforelse
 							</div>
 							<div class="message-form">
@@ -157,6 +157,11 @@
 	jQuery(function($){
 		var $mc = $('.messages-container'),
 			$text = $('#text');
+			$emptyMessage = $('#emptyMessage');
+
+		function scrollMessageBottom(argument) {
+			$mc.scrollTop($(this).innerHeight());
+		}
 		function buildMessageDom(text) {
 			var message = $("<div class='message'>"),
 				messageContent = $("<div class='message-content'>"),
@@ -183,6 +188,7 @@
 			event.preventDefault();
 
 			$dom = buildMessageDom($text.val());
+			$emptyMessage.remove();
 			$mc.append($dom.message);
 
 			$.post(
@@ -201,8 +207,9 @@
 				$dom.message.remove();
 			});
 			$text.val('');
+			scrollMessageBottom();
 		});
-		// setInterval(function(){$messagesContainer.append(buildMessageDom("Hello Fucking world"))},1000)
+		scrollMessageBottom();
 	})
 </script>
 @endsection
