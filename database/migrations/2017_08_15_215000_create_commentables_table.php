@@ -16,7 +16,7 @@ class CreateCommentablesTable extends Migration
         Schema::create('commentables', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('comment_id');
-            $table->morphs('emailables');
+            $table->morphs('commentable');
             $table->timestamps();
         });
     }

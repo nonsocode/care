@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DriverRequest;
+use App\Http\Requests\CommentRequest;
 use App\Http\Requests\SmsMessageRequest;
 use App\Repositories\Multitext;
 use App\User;
@@ -18,7 +19,7 @@ class DriverRequestsController extends Controller
      */
     public function index()
     {
-        return view('admin.driver-requests.index');
+        return view('admin.driver-requests.index')->with('headTitle',"All Requests for Drivers");
     }
 
     /**
@@ -50,8 +51,8 @@ class DriverRequestsController extends Controller
      */
     public function show(DriverRequest $driver_request)
     {
-    	$driver_request->load('smsMessages.sender');
-        return view('admin.driver-requests.show')->with('dr',$driver_request);
+    	$driver_request->load('smsMessages.sender','receivedComments.commenter');
+        return view('admin.driver-requests.show')->with('dr',$driver_request)->with('headTitle','Request for driver');
     }
 
     /**
@@ -97,6 +98,13 @@ class DriverRequestsController extends Controller
         	$driver_request->smsMessages()->attach($sms);
         	return $sms->load('sender');
         }
-        return dd($sms->httpError->getResponse(),$sms->httpError->getRequestA());
+        return response()->json($sms->httpError->getResponse(),500);
+    }
+
+    public function storeComment(DriverRequest $driver_request, CommentRequest $request)
+    {
+        $comment = Auth::user()->sentComments()->create($request->only('text'));
+        $driver_request->receivedComments()->attach($comment);
+        return response()->json($comment->load('commenter'),200);
     }
 }

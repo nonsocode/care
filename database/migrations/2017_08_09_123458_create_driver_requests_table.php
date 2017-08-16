@@ -27,6 +27,7 @@ class CreateDriverRequestsTable extends Migration
             $table->string('frequency')->nullable();
             $table->string('pay')->nullable();
             $table->string('call_time')->nullable();
+            $table->boolean('open')->default(true);
             $table->text('notes')->nullable();
             $table->softDeletes();
             $table->timestamps();

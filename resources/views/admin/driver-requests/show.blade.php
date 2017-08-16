@@ -127,12 +127,55 @@
 								<form action="" id="message-form">
 									{{csrf_field()}}
 									<label>New Message</label>
-									<textarea required name="text" class="form-control" id="text"></textarea>
+									<textarea required name="text" class="form-control" id="message-input"></textarea>
 									<div id="sms-count">
 										<span class="text-remaining">160</span>/<span class="message-count">1</span>
 									</div>
 									<div class="text-right">
 										<button class="btn btn-success" id="send-message-button">Send</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="header"><h5 class="bold">Comments</h5></div>
+					<div class="content">
+						<div class="comments-wrapper">
+							<div class="comments-container">
+							@forelse ($dr->receivedComments as $comment)
+								<div class="comment">
+									<div class="comment-content">
+										<div class="comment-text">
+											{{$comment->text}}
+										</div>
+										<div class="comment-meta text-right">
+											<span class="comment-status">{{$comment->created_at->diffForHumans()}}</span>
+											|
+											<span class="comment-sender">{{ $comment->commenter->shortName}}</span>
+										</div>
+									</div>
+									<div class="comment-sender-avatar">
+										<img class="img img-circle img-thumbnail" width="50" height="50" src="http://dummyimage.com/200x200/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image">
+									</div>
+								</div>
+							@empty
+								<h6 id="emptyMessage">
+									No comments yet
+								</h6>
+							@endforelse
+							</div>
+							<div class="comments-form">
+								<label>New Comment</label>
+								<form id="comments-form" action="" method="POST">
+									<textarea name="text" id="comment-input" class="form-control"></textarea>
+									<div class="text-right">
+										<button id="send-comment-button">Post</button>
 									</div>
 								</form>
 							</div>
@@ -156,12 +199,19 @@
 <script type="text/javascript">
 	jQuery(function($){
 		var $mc = $('.messages-container'),
-			$text = $('#text');
-			$emptyMessage = $('#emptyMessage');
+			$text = $('#message-input');
+			$emptyMessage = $('#emptyMessage'),
+			$cc = $('.comments-container'),
+			$commentInput = $('#comment-input');
+			$emptyComment = $('#emptyComment');
 
 		function scrollMessageBottom(animate) {
 			console.log($mc[0].scrollHeight);
 			$mc.animate({scrollTop : $mc[0].scrollHeight }, animate ? 400:0);
+		}
+		function scrollCommentBottom(animate) {
+			console.log($cc[0].scrollHeight);
+			$mc.animate({scrollTop : $cc[0].scrollHeight }, animate ? 400:0);
 		}
 		function buildMessageDom(text) {
 			var message = $("<div class='message'>"),
@@ -180,6 +230,23 @@
 				
 				return {message, messageContent, messageText, messageMeta, messageStatus, messageSender, avatarHolder, img}
 		}
+		function buildCommentDom(text) {
+			var message = $("<div class='comment'>"),
+				messageContent = $("<div class='comment-content'>"),
+				messageText= $("<div class='comment-text'>").text(text),
+				messageMeta = $("<div class='comment-meta text-right'>"),
+				messageStatus = $("<span class='comment-status'>").text('Sending...').attr({'data-toggle':'tooltip','title': 'Sending'}),
+				messageSender = $("<span class='comment-sender'>").text('You'),
+				avatarHolder = $("<div class='comment-sender-avatar'>")
+				img = $('<img alt="avatar" height="50" width="50" class="img img-circle img-thumbnail">').attr('src', '/img/faces/face-0.jpg');
+				
+				avatarHolder.append(img);
+				messageMeta.append(messageStatus," | ", messageSender);
+				messageContent.append(messageText,messageMeta);
+				message.append(messageContent,avatarHolder)
+				
+				return {message, messageContent, messageText, messageMeta, messageStatus, messageSender, avatarHolder, img}
+		}
 
 		function initTooltips(){
 			$("[data-toggle='tooltip']").tooltip();
@@ -190,20 +257,24 @@
 		    $("#send-message-button").click()
 		  }
 		});
-		$("#message-form").submit(function(event) {
+		$commentInput.keydown(function (e) {
+		  if (e.ctrlKey && e.keyCode == 13) {
+		    $("#send-comment-button").click()
+		  }
+		});
+		$("#comments-form").submit(function(event) {
 			event.preventDefault();
 
-			$dom = buildMessageDom($text.val());
-			$emptyMessage.remove();
-			$mc.append($dom.message);
+			$dom = buildCommentDom($commentInput.val());
+			$emptyComment.remove();
+			$cc.append($dom.message);
 
 			$.post(
-				'{{route("driver-requests.store.message",[$dr->id])}}', 
+				'{{route("driver-requests.store.comment",[$dr->id])}}', 
 				$(this).serialize(), 
 				function(data, textStatus, xhr) {
-					console.log(data);
 					$dom.messageText.text(data.text);
-					$dom.messageSender.text(data.sender.shortName);
+					$dom.messageSender.text(data.commenter.shortName);
 					$dom.messageStatus.text(moment(data.created_at).fromNow()).attr('title', data.created_at);
 					initTooltips();
 				},
@@ -213,11 +284,12 @@
 				$text.val($dom.messageText.text());
 				$dom.message.remove();
 			});
-			$text.val('');
+			$commentInput.val('');
 			scrollMessageBottom(true);
 		});
 		
 		scrollMessageBottom();
+		scrollCommentBottom();
 		initTooltips();
 	})
 </script>

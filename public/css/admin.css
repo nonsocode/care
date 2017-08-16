@@ -104,6 +104,55 @@ tr th {
 	font-weight: bold;
 	color: #999;
 }
+
+.comments-container{
+	border: 1px solid #eee;
+	height: 400px;
+	border-radius: 5px;
+	padding: 10px;
+	overflow-y: auto;
+}
+.comments-container .comment{
+	/*outline: 1px solid #eee;*/
+	border-radius: 5px;
+	position: relative;
+	margin-bottom:20px;
+}
+.comments-container .comment .comment-content{
+	margin-right: 60px;
+}
+.comments-container .comment .comment-text{
+	background: #7e8b9a;
+	color :white;
+	border-radius: 7px;
+	position: relative;
+	padding: 10px 5px 10px 20px;
+	-webkit-box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+	box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.comments-container .comment .comment-text::after{
+	position: absolute;
+	content: " ";
+	top:0;
+	right: -10px;
+	border-top: 15px solid #7e8b9a;
+	border-left: 0 solid transparent;
+	border-right: 15px solid transparent;
+}
+.comments-container .comment .comment-sender-avatar{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.comments-container .comment .comment-meta{
+	margin-top: 7px;
+	font-size: 0.9em;
+	font-weight: bold;
+	color: #999;
+}
 .clickable{
 	cursor : pointer;
+}
+.bold{
+	font-weight: bold !important;
 }

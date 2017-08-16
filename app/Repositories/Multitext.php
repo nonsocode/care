@@ -58,6 +58,7 @@ class Multitext{
 	protected function setText($text)
 	{
 		$this->text = trim($text);
+		return $this;
 	}
 
 	public function send()

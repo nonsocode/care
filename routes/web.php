@@ -34,7 +34,8 @@ Route::group(['prefix' => 'admin', 'middleware'=> ['auth','formalities']], funct
     Route::resource('users','UserController');
 
     Route::resource('driver-requests', 'DriverRequestsController');
-	Route::post('/driver-requests/{driver_request}/messages',"DriverRequestsController@storeMessage")->name('driver-requests.store.message');
+    Route::post('/driver-requests/{driver_request}/messages',"DriverRequestsController@storeMessage")->name('driver-requests.store.message');
+	Route::post('/driver-requests/{driver_request}/comments',"DriverRequestsController@storeComment")->name('driver-requests.store.comment');
 
     Route::resource('drivers', 'DriversController');
     

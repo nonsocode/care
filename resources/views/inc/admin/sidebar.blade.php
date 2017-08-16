@@ -30,6 +30,7 @@
                 </li>
                 @endcan
                 @can('manage drivers','manage clients')
+                @role('super admin')
                 <li class="{{request()->is('drivers/*')? "active":""}}">
                     <a href="{{ route('drivers.index') }}">
                         <i class="pe-7s-note2"></i>
@@ -42,6 +43,7 @@
                         <p>Clients</p>
                     </a>
                 </li>
+                @endrole
                 @endcan
                 <li class="{{request()->is('admin/profile')? "active":""}}">
                     <a href="{{route('profile')}}">
