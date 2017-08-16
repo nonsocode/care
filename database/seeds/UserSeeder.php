@@ -22,7 +22,9 @@ class UserSeeder extends Seeder
         	'password' => bcrypt('access'),
             'formalities' => true
         ]);
-        factory(User::class,30)->create();
+        if (appenv(['development'])) {
+            factory(User::class,30)->create();
+        }
         $me->assignRole('super admin');
     }
 }

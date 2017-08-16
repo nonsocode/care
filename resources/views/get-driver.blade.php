@@ -35,7 +35,7 @@
                             <input type="number" name="phone_confirmation" required class="form-control" placeholder="e.g 08031234567">
                         </div>
                         <div class="form-group">
-                            <label>Please Specify your LGA</label>
+                            <label>Please Specify your LGA of Residence? *</label>
                             <select class="form-control" required name="lga">
 								<option>Select an Option</option>
 								@foreach ($lgas as $lga)
@@ -44,7 +44,7 @@
                             </select>
                         </div>                        
                         <div class="form-group">
-                            <label>What type of Driver do you require</label>
+                            <label>What type of Driver do you require? *</label>
                             <select class="form-control" required="required" name="driver_type" value="{{old('driver_type')}}">
                             <option>Select an Option</option>
                                 @foreach ($driverTypes as $type)

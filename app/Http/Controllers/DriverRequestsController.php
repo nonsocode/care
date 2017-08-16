@@ -97,6 +97,6 @@ class DriverRequestsController extends Controller
         	$driver_request->smsMessages()->attach($sms);
         	return $sms->load('sender');
         }
-        return dd($sms->httpError->getResponse(),$sms->httpError->getRequest());
+        return dd($sms->httpError->getResponse(),$sms->httpError->getRequestA());
     }
 }
