@@ -192,11 +192,11 @@
                 <div class="col-sm-8 dib vc">
                     <div class="media contact-info wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
                         <div class="pull-left">
-                            <a href="tel:08059811502"><i class="fa fa-phone"></i></a>
+                            <a href="tel:09021959337"><i class="fa fa-phone"></i></a>
                         </div>
                         <div class="media-body">
                             <h2>Need more info?</h2>
-                            <p>Do you have any questions or need to make more enquiry? Don't worry. We've got you covered. Our customer support helpline is open during work hours every weekday. You can call us on <a href="tel:08059811502">08059811502</a></p>
+                            <p>Do you have any questions or need to make more enquiry? Don't worry. We've got you covered. Our customer support helpline is open during work hours every weekday. You can call us on <a href="tel:09021959337">09021959337</a> or  or <a href="tel:08186705928">08186705928</a></p>
                         </div>
                     </div>
                 </div>
