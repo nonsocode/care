@@ -24,6 +24,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="128x128" href="{{asset("images/ico/icon.png")}}">
     <link rel="apple-touch-icon-precomposed" href="{{asset("images/ico/icon.png")}}">
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    @yield('link')
 </head><!--/head-->
 
 <body class="homepage">
@@ -38,6 +39,6 @@
     <script src="{{asset("js/main.js")}}"></script>
     <script src="{{asset("js/wow.min.js")}}"></script>
     <script src="{{asset('js/laroute.js')}}"></script>
-    
+    @yield('script')    
 </body>
 </html>

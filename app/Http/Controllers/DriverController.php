@@ -26,11 +26,13 @@ class DriverController extends Controller
     		'lga_id'			=> $request->lga,
     		'job_description'	=> $request->job_description,
     		'driver_type_id'	=> $request->driver_type,
-    		'working_hours'		=> $request->working_hours,
+            'working_hours_start'       => $request->working_hours_start,
+    		'working_hours_end'		=> $request->working_hours_to,
     		'start_date'		=> $request->start_date,
     		'frequency'			=> $request->frequency,
     		'pay'				=> $request->pay,
-    		'call_time'			=> $request->call_time,
+            'call_time_from'            => $request->call_time_from,
+    		'call_time_to'			=> $request->call_time_to,
     		'notes'				=> $request->notes,
 		]);
     	return view('home');
