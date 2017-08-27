@@ -76,4 +76,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class, 'commenter_id');
     }
+
+    public function driverRequests()
+    {
+        return $this->hasMany(DriverRequest::class);
+    }
 }

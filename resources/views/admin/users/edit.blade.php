@@ -45,7 +45,7 @@
 						@if (session()->has('success'))
 							<div class="alert alert-success">
 								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-								<strong>Success</strong> Your profile was updated successfully
+								<strong>Success</strong> {{session('success','User updated')}}
 							</div>
 						@endif
 						@if ($errors->count())

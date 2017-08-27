@@ -38,11 +38,14 @@ $factory->define(App\DriverRequest::class, function(Faker\Generator $faker){
     		'lga_id'			=> rand(1,10),
     		'job_description'	=> $faker->sentence,
     		'driver_type_id'	=> rand(1,3),
-    		'working_hours'		=> $faker->sentence,
-    		'start_date'		=> $faker->sentence,
+            'working_hours_start'     => $faker->time("H:i"),
+    		'working_hours_end'		=> $faker->time("H:i"),
+    		'start_date'		=> $faker->dateTime,
     		'frequency'			=> $faker->sentence,
     		'pay'				=> $faker->randomNumber,
-    		'call_time'			=> $faker->time,
+            'call_time_from'         => $faker->time("H:i"),
+    		'call_time_to'			=> $faker->time("H:i"),
     		'notes'				=> $faker->text,
+            'created_at' => $faker->dateTimeBetween('-60 days', 'now')
 	];
 });

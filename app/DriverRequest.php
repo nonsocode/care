@@ -41,4 +41,9 @@ class DriverRequest extends Model
     public function getDriverTypeNameAttribute(){
     	return $this->driverType->name;
     }
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 }

@@ -50,6 +50,7 @@
 
 @section('script-links')
 	<script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 	<script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/3.2.2/js/dataTables.fixedColumns.min.js"></script>
 @endsection
 
@@ -79,6 +80,7 @@
 		// 	}
 		// });
 		$(document).ready(function() {
+			$date = (new Date())
 		    $('#driver-requests-table').DataTable({
 		    	"ajax": "{{route("driverRequest.json")}}",
 		    	'order': [[0,'desc']],
@@ -95,10 +97,18 @@
 		            { "data": "phone" },
 		            { "data": "address" },
 		            { "data": "lga.name" },
-		            { "data": "call_time" },
+		            { 
+		            	render: function (data,type, row, meta) {
+		            		return moment(row.call_time_from, "H:i:s").format('LT') + " to " + moment(row.call_time_to, "H:i:s").format('LT');
+		            	}
+		            },
 		            { "data": "job_description" },
 		            { "data": "driver_type.name" },
-		            { "data": "working_hours" },
+		            { 
+		            	render : function(data,type,row,meta){
+		            		return moment(row.working_hours_start, "H:i:s").format('LT') + " to " + moment(row.working_hours_end, "H:i:s").format('LT');
+		            	}
+		            },
 		            { "data": "start_date" },
 		            { "data": "frequency" },
 		            { "data": "pay" },

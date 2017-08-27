@@ -39,7 +39,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        return view('admin.users.create',['roles'=> Role::all()]);
     }
 
     /**
@@ -54,6 +54,7 @@ class UserController extends Controller
         $random = str_random(6);
         $data['password'] = bcrypt($random);
         $user = User::create($data);
+        $user->syncRoles($request->roles);
         $user->notify(new NewUser($user,$random));
         return back()->with('success','User Created');
     }

@@ -16,6 +16,7 @@
         <link href="{{asset('css/light-bootstrap-dashboard.css')}}" rel="stylesheet"/>
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+        <link href='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css' rel='stylesheet' type='text/css'>
         <link href="{{asset('css/pe-icon-7-stroke.css')}}" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}">
         @yield('links')
@@ -31,6 +32,7 @@
 
             </div>
         </div>
+        @yield('modals')
     </body>
     <!--   Core JS Files   -->
     <script src="{{asset('js/jquery.js')}}" type="text/javascript"></script>
@@ -38,16 +40,21 @@
     <!--  Checkbox, Radio & Switch Plugins -->
     <script src="{{asset('js/bootstrap-checkbox-radio-switch.js')}}"></script>
     <!--  Charts Plugin -->
-    <script src="{{asset('js/chartist.min.js')}}"></script>
+    {{-- <script src="{{asset('js/chartist.min.js')}}"></script> --}}
     <!--  Notifications Plugin    -->
     <script src="{{asset('js/bootstrap-notify.js')}}"></script>
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-    <script src="{{asset('js/light-bootstrap-dashboard.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    
     <script src="{{asset('js/laroute.js')}}"></script>
     <script type="text/javascript">
-        $.ajaxSetup({
-            headers: {"X-CSRF-TOKEN": $('meta[name=csrf]').attr('content')}
-        })        
+        jQuery(document).ready(function($) {
+            $.ajaxSetup({
+                headers: {"X-CSRF-TOKEN": $('meta[name=csrf]').attr('content')}
+            })   
+            $("body").on('click','.link',function(event) {
+                window.location = $(this).data('url');
+            });
+        });
     </script>
     @yield('script-links')
     @yield('script')

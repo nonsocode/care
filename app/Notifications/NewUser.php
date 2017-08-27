@@ -16,7 +16,7 @@ class NewUser extends Notification
      *
      * @return void
      */
-    public function __construct($user, $password)
+    public function __construct($user, $password = null)
     {
         $this->user = $user;
         $this->password = $password;
@@ -41,9 +41,12 @@ class NewUser extends Notification
      */
     public function toMail($notifiable)
     {
+        $line = $this->password ?
+            "Login with your email address. Your temporary password is `$this->password`. You will be prompted to change this when you log in." :
+            "";
         return (new MailMessage)
                     ->line('An account has been created for you on [care.com.ng](http://care.com.ng/admin)')
-                    ->line("Login with your email address. Your temporary password is `$this->password`. You will be prompted to change this when you log in.")
+                    ->line($line)
                     ->action('Log in Now', route('admin'))
                     ->line('Thank you');
     }

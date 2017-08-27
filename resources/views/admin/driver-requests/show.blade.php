@@ -7,8 +7,14 @@
 			<div class="col-md-8">
 				<div class="card">
 					<div class="header">
-						<h4>Requests Details</h4>
+						<h4 class="pull-left">Requests Details</h4>
+						@unless ($dr->owner)
+							<a id="convert" href="#" class="btn pull-right btn-success" data-id="{{$dr->id}}">Convert to Client</a>
+						@else
+							<a href="{{ route('clients.show', $dr->owner->id) }}" class="btn pull-right btn-success">View Client</a>
+						@endunless
 					</div>
+					<div class="clearfix"></div>
 					<div class="content">
 						<div class="row">
 							<div class="col-md-4">
@@ -48,7 +54,16 @@
 							<div class="col-md-4">
 								<div class="dr">
 									<div class="small-title">Call Time</div>
-									<div class="dr-data">{{$dr->call_time}}</div>
+									<div class="dr-data">
+										@if ($dr->call_time_from)
+											{{(new Carbon\Carbon($dr->call_time_from))->format('h:i a')}}
+											@if ($dr->call_time_to)
+												to {{(new Carbon\Carbon($dr->call_time_to))->format('h:i a')}}
+											@endif
+										@else
+											Anytime
+										@endif
+									</div>
 								</div>
 							</div>
 							<div class="col-md-4">
@@ -68,7 +83,16 @@
 							<div class="col-md-4">
 								<div class="dr">
 									<div class="small-title">Working Hours</div>
-									<div class="dr-data">{{$dr->working_hours}}</div>
+									<div class="dr-data">
+										@if ($dr->working_hours_start)
+											{{(new Carbon\Carbon($dr->working_hours_start))->format('h:i a')}}
+											@if ($dr->working_hours_end)
+												to {{(new Carbon\Carbon($dr->working_hours_end))->format('h:i a')}}
+											@endif
+										@else
+											Anytime
+										@endif
+									</div>
 								</div>
 							</div>
 							<div class="col-md-4">
@@ -195,6 +219,12 @@
 	@endif
 @endsection
 
+@section('modals')
+	
+	<div class="modal fade" id="user-select">
+	</div>
+@endsection
+
 @section('script')
 <script type="text/javascript">
 	jQuery(function($){
@@ -204,6 +234,7 @@
 			$cc = $('.comments-container'),
 			$commentInput = $('#comment-input');
 			$emptyComment = $('#emptyComment');
+			$convertBtn = $("#convert")
 
 		function scrollMessageBottom(animate) {
 			console.log($mc[0].scrollHeight);
@@ -287,7 +318,57 @@
 			$commentInput.val('');
 			scrollMessageBottom(true);
 		});
-		
+
+		function disableBtn(btn){
+			$(btn).prop('disabled', true);
+		}
+		function enableBtn(btn){
+			$(btn).prop('disabled', false);
+		}
+		function convertToClient(){
+			var $btn = $(this);
+			disableBtn(this);
+			$(this).off('click');
+			$.post('{{ route('clients.createFromRequest', $dr->id) }}', function(data, textStatus, xhr) {
+				if (data.status == 'success') {
+					swal({
+						type : "success",
+						title : "Success",
+						html : true,
+						text: `Client successfully created. <a href="${laroute.route('clients.show',{client : data.user.id})}">Go to Client</a>`
+					})
+					$btn.text('Go to Client').attr('href', laroute.route('clients.show',{client : data.user.id}));
+				}
+				else if (data.status == 'exists'){
+					// swal('Sorry', 'A similar use exists','error');
+					$("#user-select").html(data.html).modal('show');
+				}
+			},'json')
+			.fail(function(){
+				swal('Sorry', 'We could not create the client. Please try again later','error')
+			})
+			.always(function(){
+				enableBtn(this);
+				$('#convert').on('click', convertToClient)
+			});
+
+		}
+
+		$('body').on('click', '.user-selector', function(event) {
+			$("#user-select").modal('hide');
+			$.post($(this).data('url'), function(data, textStatus, xhr) {
+				swal({
+					type : "success",
+					title : "Success",
+					html : true,
+					text: `Client successfully created. <a href="${laroute.route('clients.show',{client : data.user.id})}">Go to Client</a>`
+				})
+				$convertBtn.text('Go to Client').attr('href', laroute.route('clients.show',{client : data.user.id}));
+			});
+		});
+
+		$('#convert').on('click', convertToClient)
+
 		scrollMessageBottom();
 		scrollCommentBottom();
 		initTooltips();

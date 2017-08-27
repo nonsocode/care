@@ -156,3 +156,6 @@ tr th {
 .bold{
 	font-weight: bold !important;
 }
+.DTFC_RightHeadBlocker.DTFC_Blocker {
+    background: white;
+}
