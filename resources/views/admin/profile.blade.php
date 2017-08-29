@@ -12,7 +12,7 @@
 					<div class="content">
 						<div class="author">
 							<a href="#">
-								<img class="avatar border-gray" src="{{$user->avatar or asset('img/faces/face-0.jpg')}}" alt="..."/>
+								<img class="avatar border-gray" src="{{$user->avatar or secure_asset('img/faces/face-0.jpg')}}" alt="..."/>
 
 								<h4 class="title">{{$user->full_name}}<br />
 									<small>{{"@".$user->username}}</small>

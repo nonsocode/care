@@ -141,7 +141,7 @@
 												<span class="message-sender">{{$message->sender->short_name}}</span>
 											</div>
 										</div>
-										<div class="message-sender-avatar"><img src="{{ asset('img/faces/face-0.jpg') }}" alt="avatar" height="50" width="50" class="img img-circle img-thumbnail"></div>
+										<div class="message-sender-avatar"><img src="{{ secure_asset('img/faces/face-0.jpg') }}" alt="avatar" height="50" width="50" class="img img-circle img-thumbnail"></div>
 									</div>
 								@empty
 									<h6 class="text-center" id="emptyMessage" style="margin-top: 20px">Nothing to see yet</h6>
