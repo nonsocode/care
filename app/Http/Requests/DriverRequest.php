@@ -27,8 +27,8 @@ class DriverRequest extends FormRequest
             'name' => 'required',
             'email' => 'email|required',
             'phone' => 'phone:NG|confirmed|required',
-            'lga' => 'required',
-            'driver_type' => 'required',
+            'lga' => 'required|not_in:"Select an Option"',
+            'driver_type' => 'required|not_in:"Select an Option"',
         ];
     }
 }
