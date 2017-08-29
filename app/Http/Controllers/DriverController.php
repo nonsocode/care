@@ -36,6 +36,6 @@ class DriverController extends Controller
     		'call_time_to'			=> (new Carbon($request->call_time_to))->format("H:i"),
     		'notes'				=> $request->notes,
 		]);
-    	return view('home');
+    	return view('thanks');
     }
 }
