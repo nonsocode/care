@@ -96,9 +96,9 @@
                     </div>
                     <div class="col-sm-5">
                         <div class="form-group">
-                            <label>Please indicate your exact house or office address </label>
+                            <label>Give us a close description of your area</label>
                             <p><small>You don't have to give specifics just tell us the location the driver would be required to meet you. e.g. just saying Alagomeji Yaba Lagos is okay</small></p>
-                            <input name="address" id="address" required="required" class="form-control" />
+                            <input name="address" id="address" class="form-control" />
                         </div>   
 
                         <div class="form-group">
