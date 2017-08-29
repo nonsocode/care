@@ -185,7 +185,7 @@
 										</div>
 									</div>
 									<div class="comment-sender-avatar">
-										<img class="img img-circle img-thumbnail" width="50" height="50" src="http://dummyimage.com/200x200/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image">
+										<img class="img img-circle img-thumbnail" width="50" height="50" src="https://dummyimage.com/200x200/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image">
 									</div>
 								</div>
 							@empty

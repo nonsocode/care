@@ -14,8 +14,8 @@
         <link href="{{secure_asset('css/animate.min.css')}}" rel="stylesheet"/>
         <!--  Light Bootstrap Table core CSS    -->
         <link href="{{secure_asset('css/light-bootstrap-dashboard.css')}}" rel="stylesheet"/>
-        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-        <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href='//fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
         <link href='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css' rel='stylesheet' type='text/css'>
         <link href="{{secure_asset('css/pe-icon-7-stroke.css')}}" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="{{ secure_asset('css/admin.css') }}">
