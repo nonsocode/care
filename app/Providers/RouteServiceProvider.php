@@ -39,6 +39,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapMailRoutes();
         //
     }
 
@@ -69,5 +70,11 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware('api')
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
+    }
+
+    protected function mapMailRoutes()
+    {
+        Route::prefix('mailhooks')
+            ->group(base_path('routes/mail.php'));
     }
 }
