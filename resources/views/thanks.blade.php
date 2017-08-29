@@ -7,7 +7,7 @@
 			<div class="row">
 				<div class="col-md-12" style="margin-bottom: 250px;">
 					<h1 style="color:black;">Thank You</h1>
-					<p>Your Request has been noted and a customer care representative will get back to you shortly</p>
+					<p>Thank you for completely filling our driver request form. Please expect a call from our client relationship officer. If you do not get a call in 24hrs please call 09021959337 or 08186705928</p>
 				</div>
 			</div>
 			</div>

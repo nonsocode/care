@@ -5,7 +5,7 @@
         <div class="container">
             <div class="text-center mb20">        
                 <h1 style="color:#333;">Driver Request Form</h1>
-                <p class="lead">Kindly fill out your details in the form below and one of our customer service representatives will get back to you</p>
+                <p class="lead">Thank you very much for indicating your interest in getting a driver. In the main time, kindly fill this form and one of our client relationship managers will call you to validate your request. If you have any problem filling this form please call 09021959337 or 08186705928</p>
             </div> 
             <div class="row contact-wrap"> 
                 <div class="status alert alert-success" style="display: none"></div>
