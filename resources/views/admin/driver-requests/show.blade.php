@@ -293,6 +293,31 @@
 		    $("#send-comment-button").click()
 		  }
 		});
+		
+		$("#message-form").submit(function(event) {
+			event.preventDefault();
+			$dom = buildMessageDom($text.val());
+			$emptyMessage.remove();
+			$mc.append($dom.message);
+			$.post(
+				'{{route("driver-requests.store.message",[$dr->id])}}', 
+				$(this).serialize(), 
+				function(data, textStatus, xhr) {
+					console.log(data);
+					$dom.messageText.text(data.text);
+					$dom.messageSender.text(data.sender.shortName);
+					$dom.messageStatus.text(moment(data.created_at).fromNow()).attr('title', data.created_at);
+					initTooltips();
+				},
+				'json'
+			).fail(function () {
+				console.log("somn went wrong");
+				$text.val($dom.messageText.text());
+				$dom.message.remove();
+			});
+			$text.val('');
+			scrollMessageBottom(true);
+		});
 		$("#comments-form").submit(function(event) {
 			event.preventDefault();
 
